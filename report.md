@@ -9,7 +9,7 @@ Link to GitHub code:
 https://github.gatech.edu/mraj39/ML_Masters
 
 
-# Literature 
+# Literature/Introduction/Background
 In the midst of Vision and Language Navigation innovation, AerialVLN was proposed, a UAV-based VLN task for outdoor environments specifically taking into consideration aerial actions as aerial navigation is significantly more complicated than ground-based VLN [1]. However, as energy awareness is not widely discussed in VLN, the typical path-length objective of existing approaches does not directly minimize energy consumption, nor allows constraining the energy of individual paths by battery capacity [2]. We will utilize a combination of Supervised Learning and Reinforcement Learning to better consider energy, building on top of their implementation.
 
 Dataset Description
@@ -169,7 +169,7 @@ More images:
 
 
 
-# Citations
+# Citations/References
 
 [1] Liu et al. (2023). *AerialVLN: Vision-and-Language Navigation for UAVs*.  
 The primary AirVLN paper.
