@@ -135,3 +135,28 @@ More images:
 
 <img src="{{ '/images/i.png' | relative_url }}" width="550">
 <br><br>
+
+# Next Steps
+## Goal: Implement M2 RL with Fuel Constraints and compare against TF baseline
+**1: Design the RL Reward Function**
+- Reward navigation success
+- Penalize running out of fuel before reaching the goal
+- Reward arriving at the destination with fuel remaining
+- Invest some time into using aerialVLN instead of aerialvln-s
+
+**2: Train and Compare**
+- Train RL agent under the same fuel-constrained setup used for Teacher Forcing
+- Evaluate both using the 4 standard AerialVLN metrics: SR, OSR, NE, and SDTW
+
+**3: Ablation Studies**
+- Toggle fuel fraction input on and off
+- Measure how much fuel awareness actually contributes to performance
+
+**4: Test Generalization**
+- Evaluate on Val Unseen and Test Unseen splits
+- Check if fuel-aware strategies learned in training hold up in new environments
+- Benchmarks we could consider :
+- Best ML baseline from the paper: ~4.5% SR
+- Human performance: ~80% SR
+- Our goal is to **meaningfully** improve on the ML baseline using fuel-aware RL
+
