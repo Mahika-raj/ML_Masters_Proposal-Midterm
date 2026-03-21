@@ -125,8 +125,13 @@ Overall, our TF + Fuel model works as a good starting baseline for the project. 
 Visualisation of successful navigation: 
 
 <img src="{{ '/images/f.png' | relative_url }}" width="650">
+
 Green arrows show horizontal movement, such as moving forward or side to side. Blue arrows show vertical movement and turning actions, including moving up or down and turning left or right. The red circle marks the stop action. To show which landmarks match the instruction, the same colors are used for both the bounding boxes in the images and the corresponding words in the text.
 
+More images:
+<img src="{{ '/images/g.png' | relative_url }}" width="550">
 
+<img src="{{ '/images/h.png' | relative_url }}" width="550">
 
+<img src="{{ '/images/i.png' | relative_url }}" width="550">
 <br><br>
