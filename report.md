@@ -26,7 +26,7 @@ Why These Dataset(s)
 - Supports dynamic weather (sun, rain, snow, fog) and lighting (morning, noon, night)
 
 
-<img src="./images/a.png" width="650">
+<img src="{{ '/images/a.png' | relative_url }}" width="600">
 * recorded by AOPA licensed human UAV pilots to ensure realistic and high quality flight trajectories. Each path is paired with 3 instructions written by Amazon Mechanical Turk workers, giving the dataset a wide variety of ways to describe the same flight.
 
 
@@ -36,7 +36,7 @@ Why These Dataset(s)
 - RGB and depth images from a front facing camera at every step (depth range up to 100m)
 - Semantic segmentation data available for future use
 
-<img src="./images/b.png" width="650">
+<img src="{{ '/images/b.png' | relative_url }}" width="600">
 
 **Our Addition:**
 Fuel Constraints - On top of the standard dataset, our preprocessing pipeline adds a fuel fraction at every step of every flight:
