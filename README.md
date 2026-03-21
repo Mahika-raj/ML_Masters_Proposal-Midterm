@@ -1,5 +1,6 @@
+<br><br><br>
 # Click here to view the [Midterm Checkpoint](./report/) 
-<br><br>
+<br><br><br>
 # ML_Masters_Proposal
 **AerialVLN w Fuel Constraints**
 
