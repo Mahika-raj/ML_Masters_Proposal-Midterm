@@ -194,7 +194,7 @@ Yacef, F., Rizoug, N., Degaa, L., & Hamerlain, M. (2020). *Energy-efficiency pat
 
 # Gantt Chart:
 
-<img src="{{ '/images/j.png' | relative_url }}" width="550">
+<img src="{{ '/images/l.png' | relative_url }}" width="550">
 
 <br><br>
 
