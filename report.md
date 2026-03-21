@@ -5,6 +5,7 @@ permalink: /report/
 ---
 
 **Midterm Checkpoint**
+
 **By Christine Yewon Kim, Mahika Raj, Devanshi Sood, Joseph C Miao, and Song Yue David Li**
 
 Link back to [←Proposal]({{ '/' | relative_url }})
