@@ -129,11 +129,15 @@ Visualisation of successful navigation:
 Green arrows show horizontal movement, such as moving forward or side to side. Blue arrows show vertical movement and turning actions, including moving up or down and turning left or right. The red circle marks the stop action. To show which landmarks match the instruction, the same colors are used for both the bounding boxes in the images and the corresponding words in the text.
 
 More images:
+
 <img src="{{ '/images/g.png' | relative_url }}" width="550">
 
 <img src="{{ '/images/h.png' | relative_url }}" width="550">
 
 <img src="{{ '/images/i.png' | relative_url }}" width="550">
+
+
+
 <br><br>
 
 # Next Steps
@@ -159,4 +163,25 @@ More images:
 - Best ML baseline from the paper: ~4.5% SR
 - Human performance: ~80% SR
 - Our goal is to **meaningfully** improve on the ML baseline using fuel-aware RL
+
+
+
+# Citations
+
+[1] Liu et al. (2023). *AerialVLN: Vision-and-Language Navigation for UAVs*.  
+The primary AirVLN paper.
+
+[2] Pereira et al. (2025). *Energy-Aware Coverage Path Planner for Multirotor UAVs*.  
+Used for the fuel modeling aspect.
+
+[3] Morbidi, F., Cano, R., & Lara, D. (2016). *Minimum-Energy Path Generation for a Quadrotor UAV*.  
+IEEE International Conference on Robotics and Automation (ICRA), Stockholm, Sweden.
+
+## Other References
+
+Morbidi, F., Cano, R., & Lara, D. (2016). *Minimum-energy path generation for a quadrotor UAV*. In **2016 IEEE International Conference on Robotics and Automation (ICRA)**, 1492–1498.  
+[https://hal.science/hal-01276199/document](https://hal.science/hal-01276199/document)
+
+Yacef, F., Rizoug, N., Degaa, L., & Hamerlain, M. (2020). *Energy-efficiency path planning for quadrotor UAV under wind conditions*. In **2020 7th International Conference on Control, Decision and Information Technologies (CoDIT)**, Vol. 1, 1133–1138.  
+[https://hal.science/hal-04504751/document](https://hal.science/hal-04504751/document)
 
