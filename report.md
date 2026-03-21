@@ -58,7 +58,7 @@ First step of our goal is to implement fuel constraints on our first method, Tea
 **Motivation:**
 Many existing VLN tasks are built for agents that navigate on the ground, either indoors or outdoors. However, some tasks require intelligent agents to operate in the sky, such as UAV-based goods delivery, traffic/security patrol, and scenery tours [1]. Most importantly, aerial navigation is a field with much work to be done.
 
-
+<br><br>
 # Methods
 **Data Preprocessing Methods:**
 The preprocessing converts the raw simulation data from the AirSim environment into a high-dimensional feature space. We distinguish between the baseline architectural encoding provided by AirVLN and our novel Fuel-Aware state implementation. 
@@ -90,7 +90,7 @@ The fuel parameter is fed into the present model and the gate module, which dete
 
 Overall, the objective of this fuel awareness constraint, in addition to the original imitation loss, is to adapt the model’s predictions to be aware of physical constraints. In the beginning, when fuel is abundant, the model will prioritize exploration and improve familiarity with new environments. When fuel is low, the model will shift towards efficient paths to maximize likelihood of reaching the end within budget. 
 
-
+<br><br>
 # Results and Discussion
 
 **1. TF Baseline without Fuel Constraints**
@@ -125,3 +125,4 @@ Green arrows show horizontal movement, such as moving forward or side to side. B
 
 
 
+<br><br>
