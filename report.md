@@ -3,7 +3,11 @@ layout: page
 title: "Report"
 permalink: /report/
 ---
+
+**Midterm Checkpoint**
 **By Christine Yewon Kim, Mahika Raj, Devanshi Sood, Joseph C Miao, and Song Yue David Li**
+
+Link back to [←Proposal]({{ '/' | relative_url }})
 
 Link to GitHub code: 
 https://github.gatech.edu/mraj39/ML_Masters
