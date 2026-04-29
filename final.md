@@ -74,6 +74,22 @@ Many existing VLN tasks are built for agents that navigate on the ground, either
 
 The preprocessing converts the raw simulation data from the AirSim environment into a high-dimensional feature space. We distinguish between the baseline architectural encoding provided by AirVLN and our novel Fuel-Aware state implementation. 
 
+**Baseline preprocessing:**
+
+To manage the computational load of the AerialVLN dataset, the baseline processes the raw sensor data into optimized feature vectors using a two-stream encoding process:
+- Visual Feature Extraction: The raw RGB and Depth maps are passed through a pretrailed convolutional neural network. This is done by stripping away the actual images' spatial data and only saving the final feature vectors, representing the semantic content of the UAV images. 
+- Language Tokenization: The raw textual navigation instructions are processed using a tokenizer to convert natural language into numerical tokens, mapping the human readable commands into the model’s embedding space.
+- Serialized packaging: These features are synchronized and packaged into high-performance binary database files to maximize the throughput during the Teacher Forcing (TF) training loop.
+  
+**Dynamic Fuel Constraining:**
+
+To introduce energy awareness into the navigation task, we implemented a dynamic preprocessing layer that injects space dependent constraints on the fly:
+- Fuel fraction: For every discrete step within the flight trajectory, we calculate a normalized fuel fraction representing the battery life
+- Mathematical formulation: This fraction is derived as the quotient of remaining mission steps over the total allocated steps: Fuel fraction[0.0, 1.0] = (Remaining steps)/(Maximum steps)
+- State injection: This scalar value is appended to the visual and linguistic features at every timestep, allowing the model to perceive the remaining “survival time” relative to the goal state.
+
+
+
 **Training Methodology**
 
 The primary training methodology used is Teacher Forcing. Teacher forcing is a supervised learning algorithm that is useful in sequential models, such as navigation problems. It trains the model by taking the ground-truth as the input to the next step instead of using the predicted action. This allows the model to maintain stability, avoiding accumulation of error. 
