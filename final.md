@@ -71,18 +71,15 @@ Many existing VLN tasks are built for agents that navigate on the ground, either
 <br><br>
 # Methods
 **Data Preprocessing Methods:**
-
 The preprocessing converts the raw simulation data from the AirSim environment into a high-dimensional feature space. We distinguish between the baseline architectural encoding provided by AirVLN and our novel Fuel-Aware state implementation. 
 
 **Baseline preprocessing:**
-
 To manage the computational load of the AerialVLN dataset, the baseline processes the raw sensor data into optimized feature vectors using a two-stream encoding process:
 - Visual Feature Extraction: The raw RGB and Depth maps are passed through a pretrailed convolutional neural network. This is done by stripping away the actual images' spatial data and only saving the final feature vectors, representing the semantic content of the UAV images. 
 - Language Tokenization: The raw textual navigation instructions are processed using a tokenizer to convert natural language into numerical tokens, mapping the human readable commands into the model’s embedding space.
 - Serialized packaging: These features are synchronized and packaged into high-performance binary database files to maximize the throughput during the Teacher Forcing (TF) training loop.
   
 **Dynamic Fuel Constraining:**
-
 To introduce energy awareness into the navigation task, we implemented a dynamic preprocessing layer that injects space dependent constraints on the fly:
 - Fuel fraction: For every discrete step within the flight trajectory, we calculate a normalized fuel fraction representing the battery life
 - Mathematical formulation: This fraction is derived as the quotient of remaining mission steps over the total allocated steps: Fuel fraction[0.0, 1.0] = (Remaining steps)/(Maximum steps)
@@ -90,8 +87,7 @@ To introduce energy awareness into the navigation task, we implemented a dynamic
 
 
 
-**Training Methodology**
-
+**Training Methodology:**
 The primary training methodology used is Teacher Forcing. Teacher forcing is a supervised learning algorithm that is useful in sequential models, such as navigation problems. It trains the model by taking the ground-truth as the input to the next step instead of using the predicted action. This allows the model to maintain stability, avoiding accumulation of error. 
 
 In the original implementation of AerialVLN, a dataset of pre-planned trajectories represents the ground-truth, including expected camera data, navigation instructions, and actions. It attempts up to a maximum action limit. At each step, it passes the pixels from images and depth observations through the Seq2Seq policy, along with the previous ground-truth action and current hidden state of the RNN, to output a probability distribution of actions. 
@@ -99,8 +95,7 @@ In the original implementation of AerialVLN, a dataset of pre-planned trajectori
 The primary training objective is an imitation loss, where the trainer computes the primary loss by comparing the network’s predicted actions against the ground-truth action. Thus, Teacher Forcing encourages the model to imitate the expert trajectories, which is critical for a fuel-constrained drone. 
 
 
-**Model Architectures**
-
+**Model Architectures:**
 The 2 ML models that we explored are Seq2Seq and CMA (Cross Modal Alignment). 
 
 Seq2Seq is an encoder-decoder framework that works with a recurrent policy. For AerialVLN, the encoder takes in the text instruction and sensor inputs and decodes it into a probability distribution over the action space. The Seq2Seq model proceeds with the action with the highest probability. 
