@@ -71,9 +71,11 @@ Many existing VLN tasks are built for agents that navigate on the ground, either
 <br><br>
 # Methods
 **Data Preprocessing Methods:**
+
 The preprocessing converts the raw simulation data from the AirSim environment into a high-dimensional feature space. We distinguish between the baseline architectural encoding provided by AirVLN and our novel Fuel-Aware state implementation. 
 
 **Training Methodology**
+
 The primary training methodology used is Teacher Forcing. Teacher forcing is a supervised learning algorithm that is useful in sequential models, such as navigation problems. It trains the model by taking the ground-truth as the input to the next step instead of using the predicted action. This allows the model to maintain stability, avoiding accumulation of error. 
 
 In the original implementation of AerialVLN, a dataset of pre-planned trajectories represents the ground-truth, including expected camera data, navigation instructions, and actions. It attempts up to a maximum action limit. At each step, it passes the pixels from images and depth observations through the Seq2Seq policy, along with the previous ground-truth action and current hidden state of the RNN, to output a probability distribution of actions. 
@@ -82,6 +84,7 @@ The primary training objective is an imitation loss, where the trainer computes 
 
 
 **Model Architectures**
+
 The 2 ML models that we explored are Seq2Seq and CMA (Cross Modal Alignment). 
 
 Seq2Seq is an encoder-decoder framework that works with a recurrent policy. For AerialVLN, the encoder takes in the text instruction and sensor inputs and decodes it into a probability distribution over the action space. The Seq2Seq model proceeds with the action with the highest probability. 
@@ -109,9 +112,11 @@ Seq2Seq and CMA were chosen because of their compatibility with VLN tasks. Seq2S
 # Results and Discussion
 
 **CMA and Seq2Seq**
+
 This focuses on comparing the Seq2Seq TF and CMA TF models against the fuel aware implementations that we have made. The results indicate that while the Cross-Modal Alignment (CMA) architecture is the primary driver of navigation accuracy, the fuel implementation did not produce a statistically significant impact on the baseline metrics. The performance remained consistent with the original Teaching Forcing (TF) baselines. 
 
 **Architectural Impact**
+
 The transition from a standard memory-based RNN (Seq2Seq) to an attention-based alignment model (CMA) yielded the most significant improvements in spatial accuracy. In Validation Unseen environments, the CMA-TF baseline achieved a Navigation Error (NE) of 172.1m, a 21.4% reduction in error compared to the Seq2Seq-TF baseline of 218.9m.
 
 The Success-weighted-nDTW (SDTW), which rewards both reaching the destination and following the prescribed path, saw a 57% increase, jumping from 0.7(Seq2Seq-TF) to 1.1(CMA-TF). This confirms the cross-modal attention mechanism is fundamentally better at grounding language instructions in 3D visual environments than the baseline recurrent approach.
@@ -123,6 +128,7 @@ The Success-weighted-nDTW (SDTW), which rewards both reaching the destination an
 
 
 **Analysis of the Fuel Implementation**
+
 The Fuel Implementation introduces energy-aware constraints via the FuelGateModule.
 - Seq2Seq Variants: In the Seq2Seq architecture, the fuel-constrained model  outperformed its TF baseline across all metrics in unseen environments. The Success Rate resulted in a negligible increase from 2.3% to 2.5%, and a marginal reduction in Navigation Error by less than one meter.
 - CMA Variants: In the CMA architecture, the fuel implementation resulted in a slight performance decay, with Success Rates dropping from 3.2% to 2.9% and - Navigation error increasing to 182.0m. These variances fall within the range of standard experimental noise, confirming that the fuel implementation did not fundamentally alter the agents’ navigation behavior or success metrics. 
@@ -134,6 +140,7 @@ The Fuel Implementation introduces energy-aware constraints via the FuelGateModu
 
 
 **Interpretation of Marginal Impact**
+
 The lack of meaningful divergence from the base model suggests that the fuel-aware gating was likely overshadowed by the existing training dynamics
 - Imitation Signal Dominance: Because models were trained via Teacher Forcing on expert trajectories, the agent primarily learned to imitate optimized paths. These ground truth paths are inherently inefficient, meaning the agent was already implicitly learning fuel-optimized behavior, leaving little room for the explicit FuelGateModule to add further value.
 - Feature Saturation: In high dimensional 3D environments, visual and linguistic inputs carry significantly more weight in the policy’s decision-making over a single scalar fuel state. This policy likely prioritized visual grounding over energy constraints during the optimization process
@@ -161,6 +168,7 @@ More images:
 
 
 **Summary and Conclusion**
+
 While the transition to a CMA architecture represents a major advancement in the drone’s ability to navigate complex 3D cities, the Fuel-Aware implementation did not provide a significant performance boost. These findings indicate that for resource-aware navigation, explicit constraints may require stronger incentives-such as direct rewards in a Reinforcement Learning framework to produce a measurable impact on the agent’s policy. 
 
 Although some metrics were better, overall we were not able to get impactful resutls. This had to do with issues related to the replication. We reached out to the authors and collaborators through multiple channels, but we were ghosted most of the times, A key next step would be to investigate dataset aggregation, which was part of the original paper but not explored in this project, and which may be important for achieving stronger results.
