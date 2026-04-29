@@ -72,3 +72,23 @@ Many existing VLN tasks are built for agents that navigate on the ground, either
 # Methods
 **Data Preprocessing Methods:**
 The preprocessing converts the raw simulation data from the AirSim environment into a high-dimensional feature space. We distinguish between the baseline architectural encoding provided by AirVLN and our novel Fuel-Aware state implementation. 
+
+
+
+
+<br><br>
+# Results and Discussion
+
+**CMA and Seq2Seq**
+This focuses on comparing the Seq2Seq TF and CMA TF models against the fuel aware implementations that we have made. The results indicate that while the Cross-Modal Alignment (CMA) architecture is the primary driver of navigation accuracy, the fuel implementation did not produce a statistically significant impact on the baseline metrics. The performance remained consistent with the original Teaching Forcing (TF) baselines. 
+
+**Architectural Impact**
+The transition from a standard memory-based RNN (Seq2Seq) to an attention-based alignment model (CMA) yielded the most significant improvements in spatial accuracy. In Validation Unseen environments, the CMA-TF baseline achieved a Navigation Error (NE) of 172.1m, a 21.4% reduction in error compared to the Seq2Seq-TF baseline of 218.9m.
+
+The Success-weighted-nDTW (SDTW), which rewards both reaching the destination and following the prescribed path, saw a 57% increase, jumping from 0.7(Seq2Seq-TF) to 1.1(CMA-TF). This confirms the cross-modal attention mechanism is fundamentally better at grounding language instructions in 3D visual environments than the baseline recurrent approach.
+
+
+<img src="{{ '/images/ab.png' | relative_url }}" width="650">
+
+<img src="{{ '/images/cd.png' | relative_url }}" width="650">
+
