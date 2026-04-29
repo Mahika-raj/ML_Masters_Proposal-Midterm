@@ -1,2 +1,6 @@
-blah blah blah
+---
+layout: page
+title: "Final Report"
+permalink: /final/
+---
 
