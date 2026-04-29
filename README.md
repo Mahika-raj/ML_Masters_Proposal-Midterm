@@ -1,7 +1,7 @@
 <br><br><br>
-# Click here to view the [Final Report](./final/) 
+# Click here to view the [Final Report](./final.md) 
 
-# Click here to view the [Midterm Checkpoint](./report/) 
+# Click here to view the [Midterm Checkpoint](./report.md) 
 <br><br><br>
 # ML_Masters_Proposal
 **AerialVLN w Fuel Constraints**
